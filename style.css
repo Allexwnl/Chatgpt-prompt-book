@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #navbar {
@@ -10,7 +11,6 @@ body {
     display: flex;
     justify-content: space-between;
     background-color: black;
-    height: auto;
 }
 
 #navbar img {
@@ -39,7 +39,7 @@ body {
     background: linear-gradient(to bottom, #000000, #381800); /* Gradient colors */
     color: white;
     height: 100%;
-    width: 12%;
+    width: 15%;
 }
 
 #sidebar ul li{

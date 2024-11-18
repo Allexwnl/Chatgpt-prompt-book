@@ -3,33 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatgpt-prompt-book</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <nav id="navbar">
         <img src="Ongetiteld.png" alt="logo">
         <ul>
-            <li><a href="#"><h1>Home</h1></a></li>
-            <li><a href="#"><h1>Docs</h1></a></li>
-            <li><a href="#"><h1>ChatGPT</h1></a></li>
+            <li><a href="#"><h3>Home</h3></a></li>
+            <li><a href="#"><h3>Docs</h3></a></li>
+            <li><a href="https://chatgpt.com/"><h3>ChatGPT</h3></a></li>
         </ul>
     </nav>
-    <main>
-        <section id="sidebar">
-            <div>
-                <input type="search" >
-                <h1>chatCode</h1>
-                <ul>
-                    <li>javascript</li>
-                    <li>PHP</li>
-                    <li>Html</li>
-                </ul>
-                <ul>design</ul>
-                <ul>school</ul>
-                <ul>me</ul>
-            </div>
-        </section>
-    </main>
+    <div id="prompt-options-display"></div>
+    <h1 id="prompt-title"></h1>
+    <textarea name="prompt" id="prompt" cols="100" rows="20"></textarea>
+    <button id="askChatGPT">Ask ChatGPT</button>
+    <button id="saveNewPrompt">Save as new prompt</button>
+    <template id="prompt-option">
+        <div>
+            <h2></h2>
+            <p></p>
+            <button>Start</button>
+        </div>
+    </template>
 </body>
 </html>
