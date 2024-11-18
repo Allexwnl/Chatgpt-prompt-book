@@ -3,6 +3,7 @@ body {
     padding: 0;
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 200vh;
 }
 
 #navbar {
@@ -25,6 +26,15 @@ body {
     color: white;
 }
 
+#navbar a h3 {
+    transition: 1s;
+}
+
+#navbar a h3:hover {
+    transform: scale(1.2);
+    transition: 1s;
+}
+
 #navbar ul {
     display: flex;
     flex-direction: row;
@@ -33,9 +43,57 @@ body {
     list-style: none;
 }
 
+#askChatGPT {
+    background-color: grey;
+    border: none;
+    height: 34px;
+    width: 34px;
+    margin-right: 2%;
+    border-radius: 8px;
+    transition: 1s;
+}
+
+#askChatGPT:hover {
+    transform: scale(1.2);
+    transition: 1s;
+}
+
+#saveNewPrompt {
+    background-color: grey;
+    border: none;
+    height: 34px;
+    width: 34px;
+    margin-right: 2%;
+    border-radius: 8px;
+    transition: 1s;
+}
+
+#saveNewPrompt:hover {
+    transform: scale(1.2);
+}
+
+#prompt-text-container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background-color: black;
+    width: 65.8%;
+    height: 50px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+#prompt-text-container p {
+    display: flex;
+    justify-content: flex-start;
+    color: white;
+}
+
+#askChatGPT img {
+    width: 100%;
+}
+
 #sidebar {
     position: fixed;
-    background-image: bottom;
     background: linear-gradient(to bottom, #000000, #381800); /* Gradient colors */
     color: white;
     height: 100%;
@@ -45,3 +103,27 @@ body {
 #sidebar ul li{
     list-style: none;
 }
+
+#tests {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+::-webkit-scrollbar-thumb {
+    box-shadow: 0 0 20px rgb(0, 0, 0), 0 0 30px rgb(0, 0, 0), inset 0 0 7px rgb(0, 0, 0);
+    text-shadow: 0 0 5px rgb(0, 141, 143), 0 0 10px rgb(0, 141, 143), 0 0 20px rgb(0, 141, 143), 0 0 30px rgb(0, 141, 143), 0 0 40px rgb(0, 141, 143), 0 0 55px #da8fff, 0 0 75px #da8fff;
+    background: rgb(0, 0, 0); 
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(0, 0, 0); 
+    border-radius: 10px;
+  }
