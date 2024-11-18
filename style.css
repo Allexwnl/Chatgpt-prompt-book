@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#navbar {
+    position: sticky; 
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    height: auto;
+}
+
+#navbar img {
+    display: flex;
+    justify-content: start;
+    width: 7%;
+    transform: scale(1.5);
+}
+
+#navbar a {
+    text-decoration: none;
+    color: white;
+}
+
+#navbar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
+    list-style: none;
+}
+
+#sidebar {
+    position: fixed;
+    background-image: bottom;
+    background: linear-gradient(to bottom, #000000, #381800); /* Gradient colors */
+    color: white;
+    height: 100%;
+    width: 12%;
+}
+
+#sidebar ul li{
+    list-style: none;
+}
