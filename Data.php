@@ -62,7 +62,7 @@ function checkIfUser($username, $password) {
                 var_dump($row);
                 if (password_verify($password, $row['password'])) {
                     $_SESSION['userid'] = $row['id'];
-                    header("Location: index.php");
+                    return "Logged in";
                     exit;
                 }
             } else {
@@ -73,17 +73,17 @@ function checkIfUser($username, $password) {
     return "Logged in";
 }
 
-function pushUser($username, $password) {
+function pushUser($username, $password, $verifypassword) {
     global $pdo;
-    if ($_POST['gebruikersnaam'] !== null && $_POST['password'] !== null && $_POST['verifypassword'] !== null) {
-        if ($_POST['password'] == $_POST['verifypassword']) {
-            $password = $_POST['password'];
+    if ($username !== null && $password !== null && $verifypassword !== null) {
+        if ($password == $verifypassword) {
+            $password = $password;
             $hashpassword = password_hash($password, PASSWORD_DEFAULT);
             $statement = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
             $statement->bindParam(':username', $username);
             $statement->bindParam(':password', $hashpassword);
             $statement->execute();
-            header('Location: login_register.php?login_register=login');
+            return "pushed successfully";
             exit();
         } else {
             echo "password doesn't match";
@@ -91,11 +91,6 @@ function pushUser($username, $password) {
     } else {
         echo "warning: fill all in";
     }
-    $statement = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
-    $statement->bindParam(':username', $username);
-    $statement->bindParam(':password', $password);
-    $statement->execute();
-    return "pushed successfully";
 }
 
 echo json_encode($prompts);
