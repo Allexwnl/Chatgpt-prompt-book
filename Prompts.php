@@ -2,12 +2,11 @@
 
 include("connect.php");
 
-$statement = $pdo->prepare("SELECT * FROM promptbook");
-$statement->execute();
-$prompts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
 function getPrompt() {
-    global $prompts;
+    global $pdo;
+    $statement = $pdo->prepare("SELECT * FROM promptbook");
+    $statement->execute();
+    $prompts = $statement->fetchAll(PDO::FETCH_ASSOC);
     return json_encode($prompts);
 }
 
