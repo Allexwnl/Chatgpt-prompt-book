@@ -5,6 +5,50 @@ const promptTextarea = document.getElementById('prompt');
 const askButton = document.getElementById('askChatGPT');
 const saveButton = document.getElementById('saveNewPrompt');
 
+function LogInCheck() {
+    $.ajax({
+        method: "POST",
+        url: "Data.php",
+        data: { 
+            function: "LogInCheck",
+        }
+      })
+        .done(function( response ) {
+            console.log(response);
+        });
+}
+
+function getPrompts() {
+    $.ajax({
+        method: "POST",
+        url: "Data.php",
+        data: { 
+            function: "getPrompts",
+        }
+      })
+        .done(function( response ) {
+            console.log(response);
+        });
+}
+
+function pushPrompt(prompt, category, use_case) {
+    $.ajax({
+        method: "POST",
+        url: "Data.php",
+        data: { 
+            function: "pushPrompt",
+            prompt: prompt,
+            category: category,
+            use_case: use_case,
+        }
+      })
+        .done(function( response ) {
+            console.log(response);
+        });
+}
+
+LogInCheck();
+
 const selectPrompt = (promptId) => {
     fetch(`http://localhost:8000/composite_prompts/${promptId}/expanded`)
         .then(response => response.json())

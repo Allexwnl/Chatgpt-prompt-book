@@ -1,8 +1,28 @@
 <?php
 
 include("connect.php");
+session_start();
 
-function getPrompt() {
+switch($_POST['function']) {
+    case 'logInCheck':
+        logInCheck();
+        break;
+    case 'getPrompts':
+        echo getPrompts();
+        break;
+    case 'pushPrompt':
+        pushPrompt($_POST['prompt'], $_POST['category'], $_POST['use_case']);
+        break;
+}
+
+function logInCheck() {
+    if ($_SESSION['userid'] == null) {
+        header("Location: login_register.php");
+        exit;
+    }
+}
+
+function getPrompts() {
     global $pdo;
     $statement = $pdo->prepare("SELECT * FROM promptbook");
     $statement->execute();
