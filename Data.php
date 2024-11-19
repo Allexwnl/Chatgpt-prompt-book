@@ -13,6 +13,12 @@ switch($_POST['function']) {
     case 'pushPrompt':
         pushPrompt($_POST['prompt'], $_POST['category'], $_POST['use_case']);
         break;
+    case 'checkIfUser':
+        echo checkIfUser($_POST['username'], $_POST['password']);
+        break;
+    case 'pushUser':
+        pushUser($_POST['prompt'], $_POST['category'], $_POST['use_case']);
+        break;
 }
 
 function logInCheck() {
@@ -38,6 +44,42 @@ function pushPrompt($prompt, $category, $use_case) {
     $statement->bindParam(':category', $category);
     $statement->bindParam(':use_case', $use_case);
     $statement->execute();
+    return "pushed successfully";
+}
+
+function checkIfUser($username, $password) {
+    global $pdo;
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        if ($username == "") {
+            echo 'fill in a username';
+        } elseif ($password == "") {
+            echo "fill in your password";
+        } else {
+            $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
+            $stmt->execute([':username' => $username]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($row !== false) {
+                var_dump($row);
+                if (password_verify($password, $row['password'])) {
+                    $_SESSION['userid'] = $row['id'];
+                    header("Location: index.php");
+                    exit;
+                }
+            } else {
+                echo "Invalid username or password";
+            }
+        }
+    }
+    return "Logged in";
+}
+
+function pushUser($username, $password) {
+    global $pdo;
+    $statement = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+    $statement->bindParam(':username', $username);
+    $statement->bindParam(':password', $password);
+    $statement->execute();
+    return "pushed successfully";
 }
 
 echo json_encode($prompts);

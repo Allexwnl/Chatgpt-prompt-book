@@ -1,8 +1,6 @@
 <!-- login -->
 <?php
 
-include_once("connect.php");
-session_start();
 if ($_GET["login_register"] == 'login') {
         try {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
