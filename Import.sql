@@ -6,9 +6,16 @@ USE PromptBook;
 
 CREATE TABLE PromptBook (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    user VARCHAR(255) NOT NULL,
+    userid INT NOT NULL,
     use_case VARCHAR(255) NOT NULL,
     prompt TEXT NOT NULL,
     category VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Favorites (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    userid INT NOT NULL,
+    prompt_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
