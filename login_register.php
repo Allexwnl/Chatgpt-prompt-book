@@ -12,7 +12,7 @@ if ($_GET["login_register"] == 'login') {
                     echo "fill in your password";
                 } else {
                     $password = $_POST['password'];
-                    $stmt = $pdo->prepare('SELECT * FROM user WHERE username = :username');
+                    $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
                     $stmt->execute([':username' => $_POST['gebruikersnaam']]);
                     $row = $stmt->fetch(PDO::FETCH_ASSOC);
                     if ($row !== false) {
@@ -75,7 +75,7 @@ if ($_GET["login_register"] == 'login') {
                     if ($_POST['password'] == $_POST['verifypassword']) {
                         $password = $_POST['password'];
                         $hashpassword = password_hash($password, PASSWORD_DEFAULT);
-                        $sql = "INSERT INTO user (username, password)
+                        $sql = "INSERT INTO users (username, password)
                         VALUES (:username, :password)";
                         $stmt = $pdo->prepare($sql);
                         $stmt->execute([
