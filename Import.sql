@@ -1,0 +1,14 @@
+DROP DATABASE IF EXISTS PromptBook;
+
+CREATE DATABASE PromptBook;
+
+USE PromptBook;
+
+CREATE TABLE PromptBook (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user VARCHAR(255) NOT NULL,
+    use_case VARCHAR(255) NOT NULL,
+    prompt TEXT NOT NULL,
+    category VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
