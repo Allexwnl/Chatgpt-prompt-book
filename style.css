@@ -180,14 +180,23 @@ main video {
 main button {
     display: flex;
     justify-content: center;
-    width: 80px;
+    width: 200px;
     height: 50px;
     font-size: larger;
     align-items: center;
     background-color: transparent;
-    color: green;
-    border: 3px solid green;
+    color: rgb(255, 255, 255);
+    border: 3px solid rgb(255, 255, 255);
     border-radius: 50px;
+    transition: 1s;
+    margin-bottom: 8%;
+    text-shadow: 0 0 5px #94ff86, 0 0 10px #94ff86, 0 0 20px #94ff86, 0 0 30px #94ff86, 0 0 40px #94ff86, 0 0 55px #94ff86, 0 0 75px #94ff86;
+    box-shadow: 0 0 11px 0 #94ff86, 0 0 11px 5px #94ff86, inset 0 0 7px 0 #94ff86, inset 0 0 11px 1px #94ff86;
+}
+
+main button:hover {
+    transform: scale(1.4);
+    transition: 2s;
 }
 
 ::-webkit-scrollbar-thumb {
