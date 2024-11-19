@@ -31,15 +31,15 @@ function getPrompts() {
         });
 }
 
-function pushPrompt() {
+function pushPrompt(prompt, category, use_case) {
     $.ajax({
         method: "POST",
         url: "Data.php",
         data: { 
             function: "pushPrompt",
-            prompt: "prompt",
-            category: "category",
-            use_case: "use_case",
+            prompt: prompt,
+            category: category,
+            use_case: use_case,
         }
       })
         .done(function( response ) {
