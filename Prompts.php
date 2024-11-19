@@ -11,11 +11,11 @@ function getPrompt() {
     return json_encode($prompts);
 }
 
-function pushPrompt($prompt, $user, $category, $use_case) {
+function pushPrompt($prompt, $category, $use_case) {
     global $pdo;
     $statement = $pdo->prepare("INSERT INTO promptbook (prompt, user, category, use_case) VALUES (:prompt, :user, :category, :use_case)");
     $statement->bindParam(':prompt', $prompt);
-    $statement->bindParam(':user', $user);
+    $statement->bindParam(':user', $_SESSION['userid']);
     $statement->bindParam(':category', $category);
     $statement->bindParam(':use_case', $use_case);
     $statement->execute();
