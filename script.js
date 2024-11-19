@@ -66,3 +66,20 @@ saveButton.addEventListener('click', async () => {
         })
     });
 });
+
+const navbar = document.getElementById("navbar");
+let lastScrollY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+  const currentScrollY = window.scrollY;
+
+  if (currentScrollY > lastScrollY) {
+    // Scrolling down
+    navbar.classList.add("transparent");
+  } else {
+    // Scrolling up
+    navbar.classList.remove("transparent");
+  }
+
+  lastScrollY = currentScrollY;
+});
