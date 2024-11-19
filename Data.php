@@ -75,6 +75,22 @@ function checkIfUser($username, $password) {
 
 function pushUser($username, $password) {
     global $pdo;
+    if ($_POST['gebruikersnaam'] !== null && $_POST['password'] !== null && $_POST['verifypassword'] !== null) {
+        if ($_POST['password'] == $_POST['verifypassword']) {
+            $password = $_POST['password'];
+            $hashpassword = password_hash($password, PASSWORD_DEFAULT);
+            $statement = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+            $statement->bindParam(':username', $username);
+            $statement->bindParam(':password', $hashpassword);
+            $statement->execute();
+            header('Location: login_register.php?login_register=login');
+            exit();
+        } else {
+            echo "password doesn't match";
+        }
+    } else {
+        echo "warning: fill all in";
+    }
     $statement = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
     $statement->bindParam(':username', $username);
     $statement->bindParam(':password', $password);
