@@ -47,6 +47,37 @@ function pushPrompt(prompt, category, use_case) {
         });
 }
 
+function checkIfUser(username, password) {
+    $.ajax({
+        method: "POST",
+        url: "Data.php",
+        data: { 
+            function: "checkIfUser",
+            username: username,
+            password: password,
+        }
+      })
+        .done(function( response ) {
+            console.log(response);
+        });
+}
+
+function pushUser(username, password, verify_password) {
+    $.ajax({
+        method: "POST",
+        url: "Data.php",
+        data: { 
+            function: "pushUser",
+            username: username,
+            password: password,
+            verify_password: verify_password,
+        }
+      })
+        .done(function( response ) {
+            console.log(response);
+        });
+}
+
 LogInCheck();
 
 const selectPrompt = (promptId) => {
