@@ -124,7 +124,7 @@ if(registerButton !== null)
 }
 
 if(askButton !== null)
-{
+{   
     askButton.addEventListener('click', () => {
         window.location.href = `https://chat.openai.com/?q=${promptTextarea.value}`;
     });

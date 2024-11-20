@@ -87,7 +87,8 @@ body {
     transition: 1s;
 }
 
-#saveNewPrompt {
+#saveNewPrompt,
+#saveprompt {
     background-color: grey;
     border: none;
     height: 34px;
