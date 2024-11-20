@@ -3,22 +3,24 @@
 include("connect.php");
 session_start();
 
-switch($_POST['function']) {
-    case 'logInCheck':
-        logInCheck();
-        break;
-    case 'getPrompts':
-        echo getPrompts();
-        break;
-    case 'pushPrompt':
-        pushPrompt($_POST['prompt'], $_POST['category'], $_POST['use_case']);
-        break;
-    case 'checkIfUser':
-        echo checkIfUser($_POST['username'], $_POST['password']);
-        break;
-    case 'pushUser':
-        pushUser($_POST['username'], $_POST['password'], $_POST['verifypassword']);
-        break;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    switch($_POST['function']) {
+        case 'logInCheck':
+            logInCheck();
+            break;
+        case 'getPrompts':
+            echo getPrompts();
+            break;
+        case 'pushPrompt':
+            pushPrompt($_POST['prompt'], $_POST['category'], $_POST['use_case']);
+            break;
+        case 'checkIfUser':
+            echo checkIfUser($_POST['username'], $_POST['password']);
+            break;
+        case 'pushUser':
+            pushUser($_POST['username'], $_POST['password'], $_POST['verifypassword']);
+            break;
+    }
 }
 
 function logInCheck() {

@@ -3,7 +3,7 @@ const promptOptionsDisplay = document.getElementById('prompt-options-display');
 const promptTitleElement = document.getElementById('prompt-title');
 const promptTextarea = document.getElementById('prompt');
 const askButton = document.getElementById('askChatGPT');
-const saveButton = document.getElementById('saveNewPrompt');
+const saveButton = document.getElementById('saveprompt');
 const loginButton = document.getElementById('login');
 const registerButton = document.getElementById('register');
 
@@ -29,6 +29,7 @@ function getPrompts() {
         }
       })
         .done(function( response ) {
+            console.log(response);
             return response;
         });
 }
@@ -103,6 +104,12 @@ fetch(`http://localhost:8000/composite_prompts`)
             promptOptionsDisplay.appendChild(template);
         }
     });
+
+if (saveButton !== null) {
+    saveButton.addEventListener('click', () => {
+        pushPrompt()
+    })
+}
 
 if(loginButton !== null)
 {
