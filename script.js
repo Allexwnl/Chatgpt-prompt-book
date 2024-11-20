@@ -104,58 +104,70 @@ fetch(`http://localhost:8000/composite_prompts`)
         }
     });
 
-loginButton.addEventListener('click', () => {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    checkIfUser(username, password);
-});
-
-registerButton.addEventListener('click', () => {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const verifypassword = document.getElementById("verifypassword").value;
-    pushUser(username, password, verifypassword);
-});
-
-askButton.addEventListener('click', () => {
-    window.location.href = `https://chat.openai.com/?q=${promptTextarea.value}`;
-});
-
-saveButton.addEventListener('click', async () => {
-    const newPrompt = await fetch(`http://localhost:8000/composite_prompts`, {
-        method: 'POST',
-        body: JSON.stringify({
-            "author_id": 1,
-            "title": "New Prompt",
-            "description": "default description"
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            return data;
-        });
-    const newFragment = await fetch(`http://localhost:8000/prompt_fragments`, {
-        method: 'POST',
-        body: JSON.stringify({
-            "author_id": 1,
-            "content": promptTextarea.value,
-            "description": "default description fragment",
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            return data
-        });
-
-    fetch(`http://localhost:8000/composite_prompts/${newPrompt.id}/fragments/${newFragment.id}`, {
-        method: 'POST',
-        body: JSON.stringify({
-            "order_index": 0
-        })
+if(loginButton !== null)
+{
+    loginButton.addEventListener('click', () => {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        console.log(checkIfUser(username, password));
     });
-});
+}
+
+if(registerButton !== null)
+{
+    registerButton.addEventListener('click', () => {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const verifypassword = document.getElementById("verifypassword").value;
+        pushUser(username, password, verifypassword);
+    });
+}
+
+if(askButton !== null)
+{
+    askButton.addEventListener('click', () => {
+        window.location.href = `https://chat.openai.com/?q=${promptTextarea.value}`;
+    });
+}
+
+if(saveButton !== null)
+{
+    saveButton.addEventListener('click', async () => {
+        const newPrompt = await fetch(`http://localhost:8000/composite_prompts`, {
+            method: 'POST',
+            body: JSON.stringify({
+                "author_id": 1,
+                "title": "New Prompt",
+                "description": "default description"
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                return data;
+            });
+        const newFragment = await fetch(`http://localhost:8000/prompt_fragments`, {
+            method: 'POST',
+            body: JSON.stringify({
+                "author_id": 1,
+                "content": promptTextarea.value,
+                "description": "default description fragment",
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                return data
+            });
+    
+        fetch(`http://localhost:8000/composite_prompts/${newPrompt.id}/fragments/${newFragment.id}`, {
+            method: 'POST',
+            body: JSON.stringify({
+                "order_index": 0
+            })
+        });
+    });
+}
 
 const navbar = document.getElementById("navbar");
 let lastScrollY = window.scrollY;

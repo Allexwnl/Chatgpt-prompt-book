@@ -51,9 +51,9 @@ function checkIfUser($username, $password) {
     global $pdo;
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($username == "") {
-            echo 'fill in a username';
+            return 'fill in a username';
         } elseif ($password == "") {
-            echo "fill in your password";
+            return "fill in your password";
         } else {
             $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
             $stmt->execute([':username' => $username]);
@@ -66,18 +66,16 @@ function checkIfUser($username, $password) {
                     exit;
                 }
             } else {
-                echo "Invalid username or password";
+                return "Invalid username or password";
             }
         }
     }
-    return "Logged in";
 }
 
 function pushUser($username, $password, $verifypassword) {
     global $pdo;
     if ($username !== null && $password !== null && $verifypassword !== null) {
         if ($password == $verifypassword) {
-            $password = $password;
             $hashpassword = password_hash($password, PASSWORD_DEFAULT);
             $statement = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
             $statement->bindParam(':username', $username);
@@ -92,5 +90,3 @@ function pushUser($username, $password, $verifypassword) {
         echo "warning: fill all in";
     }
 }
-
-echo json_encode($prompts);
