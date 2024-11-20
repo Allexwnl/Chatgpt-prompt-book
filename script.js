@@ -29,7 +29,7 @@ function getPrompts() {
         }
       })
         .done(function( response ) {
-            console.log(response);
+            return response;
         });
 }
 
@@ -60,7 +60,7 @@ function checkIfUser(username, password) {
         }
       })
         .done(function( response ) {
-            console.log(response);
+            return response;
         });
 }
 
