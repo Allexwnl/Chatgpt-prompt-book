@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo getPrompts();
             break;
         case 'pushPrompt':
-            pushPrompt($_POST['text'], $_POST['categorie'], $_POST['gebruikswijze']);
+            pushPrompt($_POST['prompt'], $_POST['category'], $_POST['use_case']);
             break;
         case 'checkIfUser':
             echo checkIfUser($_POST['username'], $_POST['password']);

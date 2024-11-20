@@ -2,6 +2,8 @@ const promptTemplate = document.getElementById('prompt-option');
 const promptOptionsDisplay = document.getElementById('prompt-options-display');
 const promptTitleElement = document.getElementById('prompt-title');
 const promptTextarea = document.getElementById('prompt');
+const use_case = document.getElementById('use_case');
+const category = document.getElementById('category');
 const askButton = document.getElementById('askChatGPT');
 const saveButton = document.getElementById('saveprompt');
 const loginButton = document.getElementById('login');
@@ -57,9 +59,9 @@ function pushPrompt(prompt, category, use_case) {
         url: "Data.php",
         data: { 
             function: "pushPrompt",
-            text: prompt,
-            categorie: category,
-            gebruikswijze: use_case,
+            prompt: prompt,
+            category: category,
+            use_case: use_case,
         }
       })
         .done(function( response ) {
@@ -124,7 +126,7 @@ fetch(`http://localhost:8000/composite_prompts`)
 
 if (saveButton !== null) {
     saveButton.addEventListener('click', () => {
-        pushPrompt(promptTextarea.value, category, use_case);
+        pushPrompt(promptTextarea.value, category.value, use_case.value);
     })
 }
 
