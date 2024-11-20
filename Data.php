@@ -17,7 +17,7 @@ switch($_POST['function']) {
         echo checkIfUser($_POST['username'], $_POST['password']);
         break;
     case 'pushUser':
-        pushUser($_POST['username'], $_POST['password'], $_POST['verify_password']);
+        pushUser($_POST['username'], $_POST['password'], $_POST['verifypassword']);
         break;
 }
 

@@ -4,6 +4,8 @@ const promptTitleElement = document.getElementById('prompt-title');
 const promptTextarea = document.getElementById('prompt');
 const askButton = document.getElementById('askChatGPT');
 const saveButton = document.getElementById('saveNewPrompt');
+const loginButton = document.getElementById('login');
+const registerButton = document.getElementById('register');
 
 function LogInCheck() {
     $.ajax({
@@ -62,7 +64,7 @@ function checkIfUser(username, password) {
         });
 }
 
-function pushUser(username, password, verify_password) {
+function pushUser(username, password, verifypassword) {
     $.ajax({
         method: "POST",
         url: "Data.php",
@@ -70,7 +72,7 @@ function pushUser(username, password, verify_password) {
             function: "pushUser",
             username: username,
             password: password,
-            verify_password: verify_password,
+            verifypassword: verifypassword,
         }
       })
         .done(function( response ) {
@@ -101,6 +103,19 @@ fetch(`http://localhost:8000/composite_prompts`)
             promptOptionsDisplay.appendChild(template);
         }
     });
+
+loginButton.addEventListener('click', () => {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    checkIfUser(username, password);
+});
+
+registerButton.addEventListener('click', () => {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const verifypassword = document.getElementById("verifypassword").value;
+    pushUser(username, password, verifypassword);
+});
 
 askButton.addEventListener('click', () => {
     window.location.href = `https://chat.openai.com/?q=${promptTextarea.value}`;
