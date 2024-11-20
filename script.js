@@ -40,9 +40,9 @@ function pushPrompt(prompt, category, use_case) {
         url: "Data.php",
         data: { 
             function: "pushPrompt",
-            prompt: prompt,
-            category: category,
-            use_case: use_case,
+            text: prompt,
+            categorie: category,
+            gebruikswijze: use_case,
         }
       })
         .done(function( response ) {
