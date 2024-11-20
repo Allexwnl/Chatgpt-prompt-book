@@ -16,7 +16,7 @@
   <nav id="navbar">
     <img src="Ongetiteld.png" alt="logo">
     <ul>
-      <li><a href="index.html"><h3>Home</h3></a></li>
+      <li><a href="homepage.html"><h3>Home</h3></a></li>
       <li><a href="docs.html"><h3>Docs</h3></a></li>
       <li><a href="https://chatgpt.com/"><h3>ChatGPT</h3></a></li>
       <li><a href="AddNewPrompt.html"><h3>Add new Prompt</h3></a></li>
@@ -43,6 +43,7 @@
                 </ul>
                 <h1 class="sidebartitle">saved Prompts</h1>
                 <ul>
+                    <li><a href="/deepdive 5.0/Chatgpt-prompt-book/docs.html">Global Prompts</a></li>
                     <li><a href="">your prompts</a></li>
                     <li><a href="">favorite Prompts</a></li>
                 </ul>
@@ -53,6 +54,18 @@
         <div id="prompt-options-display"></div>
         <h1 id="coding">Add Your own Prompt</h1>
         <div id="prompt-text-container" cols="10">
+            <input type="text" id="usecase">
+              <select name="tagsx" id="tags">
+                <option value="1">Choose tag</option>
+                <option value="1">📏Math</option>
+                <option value="1">🌎Geography</option>
+                <option value="1">🗣English</option>
+                <option value="1">🗣Dutch</option>
+                <option value="1">🧑‍💻coding</option>
+                <option value="1">📠Economics</option>
+                <option value="1">🕰History</option>
+                <option value="1">My prompts</option>
+              </select>
             <button id="saveprompt"><i class='bx bxs-save bx-sm'></i></button>
             <button id="askChatGPT"><img src="icons8-chatgpt-48.png" alt=""></button>
         </div>

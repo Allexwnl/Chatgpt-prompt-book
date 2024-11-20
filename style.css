@@ -115,7 +115,6 @@ body {
 #prompt-text-container p {
     display: flex;
     justify-content: flex-start;
-    color: white;
 }
 
 #askChatGPT img {
@@ -205,6 +204,7 @@ main button a {
     color: rgb(255, 255, 255);
 }
 
+
 footer {
     background-color: black;
     color: white;
@@ -212,7 +212,7 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 11vh;
+    height: 13vh;
     margin-top: 5%;
 }
 
