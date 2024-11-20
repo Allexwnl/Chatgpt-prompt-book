@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo getPrompts();
             break;
         case 'pushPrompt':
-            pushPrompt($_POST['prompt'], $_POST['category'], $_POST['use_case']);
+            pushPrompt($_POST['prompt'], $_POST['category'], $_POST['usecase']);
             break;
         case 'checkIfUser':
             echo checkIfUser($_POST['username'], $_POST['password']);
@@ -40,13 +40,17 @@ function getPrompts() {
 
 function pushPrompt($prompt, $category, $use_case) {
     global $pdo;
-    $statement = $pdo->prepare("INSERT INTO promptbook (prompt, user, category, use_case) VALUES (:prompt, :user, :category, :use_case)");
-    $statement->bindParam(':prompt', $prompt);
-    $statement->bindParam(':user', $_SESSION['userid']);
-    $statement->bindParam(':category', $category);
-    $statement->bindParam(':use_case', $use_case);
-    $statement->execute();
-    return "pushed successfully";
+    if($prompt !== null && $category !== null && $use_case !== null && $prompt !== "" && $category !== "" && $use_case !== "") {
+        $statement = $pdo->prepare("INSERT INTO promptbook (prompt, userid, category, use_case) VALUES (:prompt, :userid, :category, :use_case)");
+        $statement->bindParam(':prompt', $prompt);
+        $statement->bindParam(':userid', $_SESSION['userid']);
+        $statement->bindParam(':category', $category);
+        $statement->bindParam(':use_case', $use_case);
+        $statement->execute();
+        return "pushed successfully";
+    } else {
+        return "Something not filled in";
+    }
 }
 
 function checkIfUser($username, $password) {

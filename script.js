@@ -3,7 +3,7 @@ const promptOptionsDisplay = document.getElementById('prompt-options-display');
 const promptTitleElement = document.getElementById('prompt-title');
 const promptTextarea = document.getElementById('prompt');
 const use_case = document.getElementById('use_case');
-const category = document.getElementById('category');
+const category = document.getElementById('tags');
 const askButton = document.getElementById('askChatGPT');
 const saveButton = document.getElementById('saveprompt');
 const loginButton = document.getElementById('login');
@@ -53,7 +53,7 @@ function getPrompts() {
         });
 }
 
-function pushPrompt(prompt, category, use_case) {
+function pushPrompt(prompt, category, usecase) {
     $.ajax({
         method: "POST",
         url: "Data.php",
@@ -61,7 +61,7 @@ function pushPrompt(prompt, category, use_case) {
             function: "pushPrompt",
             prompt: prompt,
             category: category,
-            use_case: use_case,
+            usecase: usecase,
         }
       })
         .done(function( response ) {
