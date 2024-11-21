@@ -186,16 +186,6 @@ if(saveButton !== null)
         });
     });
 }
-
-if(window.location.href.includes("docs.html")) {
-    getPrompts().then(output => {
-        output = JSON.parse(output);
-        console.log(output[0].use_case);
-    }).catch(error => {
-        console.error('Error fetching prompts:', error);
-    });
-}
-
 const navbar = document.getElementById("navbar");
 let lastScrollY = window.scrollY;
 
@@ -212,3 +202,90 @@ window.addEventListener("scroll", () => {
 
   lastScrollY = currentScrollY;
 });
+
+// Check the current URL and decide category-based rendering
+// Check the current URL and decide category-based rendering
+const categories = {
+    "math.html": "math",
+    "geography.html": "geography",
+    "english.html": "english",
+    "dutch.html": "dutch",
+    "coding.html": "coding",
+    "economics.html": "economics",
+    "history.html": "history"
+};
+
+const currentPage = Object.keys(categories).find(page => window.location.href.includes(page));
+
+if (currentPage) {
+    const currentCategory = categories[currentPage];
+    console.log(`Current category detected: ${currentCategory}`);
+
+    getPrompts()
+        .then(output => {
+            console.log('Raw output:', output);
+            output = JSON.parse(output); // Parse the fetched prompts
+            console.log('Parsed output:', output);
+
+            const filteredOutput = output.filter(item => item.category === currentCategory);
+            console.log(`Filtered prompts for ${currentCategory}:`, filteredOutput);
+
+            if (filteredOutput.length > 0) {
+                createTestSection('cardContainer', filteredOutput);
+            } else {
+                console.warn(`No prompts found for category: ${currentCategory}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching prompts:', error);
+        });
+} else {
+    console.warn('No matching category found for this page.');
+}
+
+// Function to dynamically create a test section with filtered prompts
+function createTestSection(cardContainerId, output) {
+    const cardContainer = document.getElementById(cardContainerId);
+
+    if (!cardContainer) {
+        console.error(`Card container with ID "${cardContainerId}" not found.`);
+        return;
+    }
+
+    // Clear the card container before adding new content
+    cardContainer.innerHTML = '';
+
+    // Loop through filtered output to create cards for each prompt
+    output.forEach((item, index) => {
+        const section = document.createElement("section");
+        section.id = `tests`;
+
+        const heading = document.createElement("h3");
+        heading.textContent = item.title || ` ${item.use_case}`;
+        section.appendChild(heading);
+
+        const promptTextContainer = document.createElement("div");
+        promptTextContainer.id = `prompt-text-container`;
+
+        const chatbutton = document.createElement("button")
+        chatbutton.id = "askChatGPT"
+        const chatimg = document.createElement("img");
+        chatimg.src = "icons8-chatgpt-48.png";
+        chatimg.id = "chatimg"
+
+        const textarea = document.createElement("textarea");
+        textarea.name = `prompt-${index}`;
+        textarea.id = `prompt`;
+        textarea.disabled = "true"
+        textarea.style.width = "65.3%";
+        textarea.rows = 20;
+        textarea.textContent = item.prompt || "No prompt available";
+
+        section.appendChild(promptTextContainer);
+        section.appendChild(textarea);
+        promptTextContainer.appendChild(chatbutton)
+        chatbutton.appendChild(chatimg)
+
+        cardContainer.appendChild(section);
+    });
+}
