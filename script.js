@@ -122,7 +122,11 @@ if(loginButton !== null)
     loginButton.addEventListener('click', () => {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        console.log(checkIfUser(username, password));
+        const output = checkIfUser(username, password);
+        if(output == "Logged in")
+        {
+            window.location.href = "homepage.html";
+        }
     });
 }
 
