@@ -237,8 +237,19 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 13vh;
+    height: 15vh;
     margin-top: 5%;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+    transition: 1s;
+}
+
+footer a:hover {
+    transform: scale(1.1);
+    transition: 1s;
 }
 
 ::-webkit-scrollbar-thumb {
