@@ -4,7 +4,7 @@ include("connect.php");
 session_start();
 
 if($_SESSION['userid'] == null) {
-    header("Location: login_register.php");
+    header("Location: index.html");
     exit;
 }
 
