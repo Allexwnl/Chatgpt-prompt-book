@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'pushUser':
             echo pushUser($_POST['username'], $_POST['password'], $_POST['verifypassword']);
             break;
+        default:
+            echo "Function not found";
     }
 }
 
