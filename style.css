@@ -98,7 +98,8 @@ body {
     transition: 1s;
 }
 
-#saveNewPrompt:hover {
+#saveNewPrompt:hover,
+#saveprompt:hover {
     transform: scale(1.2);
 }
 
@@ -204,6 +205,30 @@ main button a {
     color: rgb(255, 255, 255);
 }
 
+input[type="text"] {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 8px;
+    margin-right: 2%;
+    padding: 0.5%;
+    color: white;
+    text-shadow: 0 0 5px #94ff86, 0 0 10px #94ff86, 0 0 20px #94ff86, 0 0 30px #94ff86, 0 0 40px #94ff86, 0 0 55px #94ff86, 0 0 75px #94ff86;
+    box-shadow: 0 0 11px 0 #94ff86, 0 0 11px 5px #94ff86, inset 0 0 7px 0 #94ff86, inset 0 0 11px 1px #94ff86;
+}
+
+select {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 8px;
+    margin-right: 2%;
+    padding: 0.5%;
+    color: white;
+    box-shadow: 0 0 11px 0 #94ff86, 0 0 11px 5px #94ff86, inset 0 0 7px 0 #94ff86, inset 0 0 11px 1px #94ff86;
+}
+
+option {
+    color: black;
+}
 
 footer {
     background-color: black;
