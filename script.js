@@ -8,9 +8,10 @@ const askButton = document.getElementById('askChatGPT');
 const saveButton = document.getElementById('saveprompt');
 const loginButton = document.getElementById('login');
 const registerButton = document.getElementById('register');
+let userid = "1";
 
-function LogInCheck() {
-    $.ajax({
+async function LogInCheck() {
+    return await $.ajax({
         method: "POST",
         url: "Data.php",
         data: { 
@@ -21,13 +22,13 @@ function LogInCheck() {
             if(response == "Log in first")
             {
                 window.location.href = "login.html";
+            } else {
+                userid = response;
             }
-            console.log(response);
         });
 }
 
 async function getPrompts() {
-    LogInCheck();
     return await $.ajax({
         method: "POST",
         url: "Data.php",
@@ -41,7 +42,6 @@ async function getPrompts() {
 }
 
 function pushPrompt(prompt, category, usecase) {
-    LogInCheck();
     $.ajax({
         method: "POST",
         url: "Data.php",
@@ -191,9 +191,15 @@ window.addEventListener("scroll", () => {
   lastScrollY = currentScrollY;
 });
 
+if(window.location.href.includes("myprompts") || window.location.href.includes("AddNewPrompt"))
+{
+    LogInCheck();
+}
+
 // Check the current URL and decide category-based rendering
 // Check the current URL and decide category-based rendering
 const categories = {
+    "img.html": 'img',
     "math.html": "math",
     "geography.html": "geography",
     "english.html": "english",
@@ -228,7 +234,52 @@ if (currentPage) {
             console.error('Error fetching prompts:', error);
         });
 } else {
-    console.warn('No matching category found for this page.');
+    if(window.location.href.includes("docs")) {
+        getPrompts()
+            .then(output => {
+                console.log('Raw output:', output);
+                output = JSON.parse(output); // Parse the fetched prompts
+                console.log('Parsed output:', output);
+    
+                const filteredOutput = output;
+                console.log(`Filtered prompts for:`, filteredOutput);
+    
+                if (filteredOutput.length > 0) {
+                    createTestSection('cardContainer', filteredOutput);
+                } else {
+                    console.warn(`No prompts found for category: ${filteredOutput}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching prompts:', error);
+            });
+    } else if(window.location.href.includes("myprompts")) {
+        LogInCheck()
+            .then((userid) => {
+                console.log(userid);
+                getPrompts()
+                    .then((output) => {
+                        console.log(userid);
+                        console.log('Raw output:', output);
+                        output = JSON.parse(output); // Parse the fetched prompts
+                        console.log('Parsed output:', output);
+            
+                        const filteredOutput = output.filter(item => item.userid === userid);
+                        console.log(`Filtered prompts for:`, filteredOutput);
+            
+                        if (filteredOutput.length > 0) {
+                            createTestSection('cardContainer', filteredOutput);
+                        } else {
+                            console.warn(`No prompts found for category: ${filteredOutput}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching prompts:', error);
+                    });
+            });
+    } else {
+        console.log('No category specified');
+    }
 }
 
 // Function to dynamically create a test section with filtered prompts

@@ -21,14 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo pushUser($_POST['username'], $_POST['password'], $_POST['verifypassword']);
             break;
         default:
-            echo "Function not found";
+            echo $_SESSION['userid'];
             break;
     }
 }
 
 function logInCheck() {
-    if ($_SESSION['userid'] == null) {
+    if (!isset($_SESSION['userid'])) {
         return "Log in first";
+    } else {
+        return $_SESSION['userid'];
     }
 }
 
