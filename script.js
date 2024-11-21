@@ -18,7 +18,7 @@ function LogInCheck() {
         }
       })
         .done(function( response ) {
-            if(response == "Log in first" && (window.location.href != "login.html" && window.location.href != "index.html"))
+            if(response == "Log in first")
             {
                 window.location.href = "login.html";
             }
@@ -27,6 +27,7 @@ function LogInCheck() {
 }
 
 function getPrompts() {
+    LogInCheck();
     $.ajax({
         method: "POST",
         url: "Data.php",
@@ -41,6 +42,7 @@ function getPrompts() {
 }
 
 function pushPrompt(prompt, category, usecase) {
+    LogInCheck();
     $.ajax({
         method: "POST",
         url: "Data.php",
@@ -86,8 +88,6 @@ function pushUser(username, password, verifypassword) {
             console.log(response);
         });
 }
-
-LogInCheck();
 
 const selectPrompt = (promptId) => {
     fetch(`http://localhost:8000/composite_prompts/${promptId}/expanded`)
