@@ -4,7 +4,7 @@ include("connect.php");
 session_start();
 
 if($_SESSION['userid'] == null) {
-    header("Location: index.html");
+    echo "Log in first";
     exit;
 }
 
