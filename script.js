@@ -126,7 +126,7 @@ if(loginButton !== null)
         console.log(output);
         if(output == "Logged in")
         {
-            //window.location.href = "homepage.html";
+            window.location.href = "homepage.html";
         }
     });
 }
