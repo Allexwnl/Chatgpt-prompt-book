@@ -26,9 +26,9 @@ function LogInCheck() {
         });
 }
 
-function getPrompts() {
+async function getPrompts() {
     LogInCheck();
-    return $.ajax({
+    return await $.ajax({
         method: "POST",
         url: "Data.php",
         data: { 
@@ -188,8 +188,11 @@ if(saveButton !== null)
 }
 
 if(window.location.href.includes("docs.html")) {
-    const output = JSON.parse(getPrompts().responseText);
-    console.log(output);
+    getPrompts().then(output => {
+        console.log(JSON.parse(output));
+    }).catch(error => {
+        console.error('Error fetching prompts:', error);
+    });
 }
 
 const navbar = document.getElementById("navbar");
