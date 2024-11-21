@@ -69,6 +69,11 @@ function checkIfUser(username, password) {
         }
       })
         .done(function( response ) {
+            if(response == "Logged in")
+            {
+                window.location.href = "homepage.html";
+            }
+            console.log(response);
             return response;
         });
 }
@@ -124,10 +129,6 @@ if(loginButton !== null)
         const password = document.getElementById("password").value;
         const output = checkIfUser(username, password);
         console.log(output);
-        if(output == "Logged in")
-        {
-            window.location.href = "homepage.html";
-        }
     });
 }
 
