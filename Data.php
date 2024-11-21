@@ -6,27 +6,26 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch($_POST['function']) {
         case 'logInCheck':
-            logInCheck();
+            echo logInCheck();
             break;
         case 'getPrompts':
             echo getPrompts();
             break;
         case 'pushPrompt':
-            pushPrompt($_POST['prompt'], $_POST['category'], $_POST['usecase']);
+            echo pushPrompt($_POST['prompt'], $_POST['category'], $_POST['usecase']);
             break;
         case 'checkIfUser':
             echo checkIfUser($_POST['username'], $_POST['password']);
             break;
         case 'pushUser':
-            pushUser($_POST['username'], $_POST['password'], $_POST['verifypassword']);
+            echo pushUser($_POST['username'], $_POST['password'], $_POST['verifypassword']);
             break;
     }
 }
 
 function logInCheck() {
     if ($_SESSION['userid'] == null) {
-        echo "Log in first";
-        exit;
+        return "Log in first";
     }
 }
 
@@ -65,11 +64,9 @@ function checkIfUser($username, $password) {
             $stmt->execute([':username' => $username]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($row !== false) {
-                var_dump($row);
                 if (password_verify($password, $row['password'])) {
                     $_SESSION['userid'] = $row['id'];
                     return "Logged in";
-                    exit;
                 }
             } else {
                 return "Invalid username or password";
@@ -90,9 +87,9 @@ function pushUser($username, $password, $verifypassword) {
             return "pushed successfully";
             exit();
         } else {
-            echo "password doesn't match";
+            return "password doesn't match";
         }
     } else {
-        echo "warning: fill all in";
+        return "warning: fill all in";
     }
 }
