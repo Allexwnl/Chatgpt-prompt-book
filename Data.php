@@ -6,27 +6,26 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch($_POST['function']) {
         case 'logInCheck':
-            logInCheck();
+            echo logInCheck();
             break;
         case 'getPrompts':
             echo getPrompts();
             break;
         case 'pushPrompt':
-            pushPrompt($_POST['prompt'], $_POST['category'], $_POST['usecase']);
+            echo pushPrompt($_POST['prompt'], $_POST['category'], $_POST['usecase']);
             break;
         case 'checkIfUser':
             echo checkIfUser($_POST['username'], $_POST['password']);
             break;
         case 'pushUser':
-            pushUser($_POST['username'], $_POST['password'], $_POST['verifypassword']);
+            echo pushUser($_POST['username'], $_POST['password'], $_POST['verifypassword']);
             break;
     }
 }
 
 function logInCheck() {
     if ($_SESSION['userid'] == null) {
-        echo "Log in first";
-        exit;
+        return "Log in first";
     }
 }
 
@@ -69,7 +68,6 @@ function checkIfUser($username, $password) {
                 if (password_verify($password, $row['password'])) {
                     $_SESSION['userid'] = $row['id'];
                     return "Logged in";
-                    exit;
                 }
             } else {
                 return "Invalid username or password";

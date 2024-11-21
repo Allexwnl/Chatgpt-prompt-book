@@ -123,9 +123,10 @@ if(loginButton !== null)
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
         const output = checkIfUser(username, password);
+        console.log(output);
         if(output == "Logged in")
         {
-            window.location.href = "homepage.html";
+            //window.location.href = "homepage.html";
         }
     });
 }
