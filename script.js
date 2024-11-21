@@ -190,6 +190,7 @@ if(saveButton !== null)
 if(window.location.href.includes("docs.html")) {
     getPrompts().then(output => {
         output = JSON.parse(output);
+        console.log(output[0].use_case);
     }).catch(error => {
         console.error('Error fetching prompts:', error);
     });
