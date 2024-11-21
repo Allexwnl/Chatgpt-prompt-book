@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatAI</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="icon" type="image" href="Ongetiteld.png">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="/deepdive 5.0/Chatgpt-prompt-book/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/deepdive 5.0/Chatgpt-prompt-book/script.js" defer></script>
 </head>
+
 <body>
     <nav id="navbar">
         <img src="Ongetiteld.png" alt="logo">
@@ -50,8 +51,32 @@
             </section>
         </main>
     <section id="tests">
-        <h1 id="coding">Prompts made by others!</h1>
-            <div id="myprompts"></div>
+        <div id="prompt-options-display"></div>
+        <h1 id="coding">math</h1>
+        <h3>Hoe vind ik problemen zonder direct antwoord?</h3>
+        <div id="prompt-text-container" cols="10">
+            <button id="saveNewPrompt"><i class='bx bxs-heart bx-sm'></i></button>
+            <button id="askChatGPT"><img src="/deepdive 5.0/Chatgpt-prompt-book/icons8-chatgpt-48.png" alt=""></button>
+        </div>
+        <textarea name="prompt" id="prompt" style="width: 65.3%" rows="20">could you help me find the solution to this math equation/problem? dont tell the answer straight away i would like to have a step by step guidance
+
+to get the answer we need for this question. make sure to explain each step carefully
+
+my math problem: 
+</textarea>
+    </section>
+    <section id="tests">
+        <div id="prompt-options-display"></div>
+        <h3>Hoe vind ik problemen met direct antwoord?</h3>
+        <div id="prompt-text-container" cols="10">
+            <button id="askChatGPT"><img src="/deepdive 5.0/Chatgpt-prompt-book/icons8-chatgpt-48.png" alt=""></button>
+        </div>
+        <textarea name="prompt" id="prompt" style="width: 65.3%" rows="20">could you help me find the solution to this math equation/problem? Tell the answer straight away i would like to have a step by step guidance
+
+to get the answer we need for this question. make sure to explain each step carefully
+
+my math problem: 
+        </textarea>
     </section>
 </body>
 
