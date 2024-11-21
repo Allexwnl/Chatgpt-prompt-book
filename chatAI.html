@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <script src="chatai.js" defer></script>
+</head>
+<body>
+    <h1>Chat met AI</h1>
+    <input id="input" type="text" placeholder="Typ je vraag hier...">
+    <button id="send">Verstuur</button>
+    <p id="response"></p>
+
+    <script>
+        document.getElementById("send").addEventListener("click", async () => {
+            const userMessage = document.getElementById("input").value;
+            const response = await fetch("http://localhost:3000/ask", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: userMessage })
+            });
+            const data = await response.json();
+            document.getElementById("response").innerText = data.reply;
+        });
+    </script>
+</body>
+</html>
