@@ -3,6 +3,11 @@
 include("connect.php");
 session_start();
 
+if($_SESSION['userid'] == null) {
+    header("Location: login_register.php");
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch($_POST['function']) {
         case 'logInCheck':
