@@ -103,18 +103,6 @@ const selectPrompt = (promptId) => {
         });
 }
 
-fetch(`http://localhost:8000/composite_prompts`)
-    .then(response => response.json())
-    .then(composite_prompts => {
-        for (const composite_prompt of composite_prompts) {
-            const template = promptTemplate.content.cloneNode(true);
-            template.querySelector('h2').innerText = composite_prompt.title;
-            template.querySelector('p').innerText = composite_prompt.description;
-            template.querySelector('button').addEventListener('click', () => {selectPrompt(composite_prompt.id)});
-            promptOptionsDisplay.appendChild(template);
-        }
-    });
-
 if (saveButton !== null) {
     saveButton.addEventListener('click', () => {
         pushPrompt(promptTextarea.value, category.value, use_case.value);
