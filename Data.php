@@ -87,9 +87,9 @@ function pushUser($username, $password, $verifypassword) {
             return "pushed successfully";
             exit();
         } else {
-            echo "password doesn't match";
+            return "password doesn't match";
         }
     } else {
-        echo "warning: fill all in";
+        return "warning: fill all in";
     }
 }
