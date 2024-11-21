@@ -28,7 +28,7 @@ function LogInCheck() {
 
 function getPrompts() {
     LogInCheck();
-    $.ajax({
+    return $.ajax({
         method: "POST",
         url: "Data.php",
         data: { 
@@ -36,7 +36,6 @@ function getPrompts() {
         }
       })
         .done(function( response ) {
-            console.log(response);
             return response;
         });
 }
@@ -186,6 +185,11 @@ if(saveButton !== null)
             })
         });
     });
+}
+
+if(window.location.href.includes("docs.html")) {
+    const output = getPrompts();
+    console.log(output);
 }
 
 const navbar = document.getElementById("navbar");
