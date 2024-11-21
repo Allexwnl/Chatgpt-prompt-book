@@ -156,7 +156,14 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
+
+#cardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}  
 
 #homepagemain {
     height: 80vh;
