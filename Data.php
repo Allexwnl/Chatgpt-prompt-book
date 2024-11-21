@@ -64,7 +64,6 @@ function checkIfUser($username, $password) {
             $stmt->execute([':username' => $username]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($row !== false) {
-                var_dump($row);
                 if (password_verify($password, $row['password'])) {
                     $_SESSION['userid'] = $row['id'];
                     return "Logged in";
