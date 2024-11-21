@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
         default:
             echo "Function not found";
+            break;
     }
 }
 
@@ -69,9 +70,11 @@ function checkIfUser($username, $password) {
                 if (password_verify($password, $row['password'])) {
                     $_SESSION['userid'] = $row['id'];
                     return "Logged in";
+                } else {
+                    return "Invalid password";
                 }
             } else {
-                return "Invalid username or password";
+                return "Invalid username";
             }
         }
     }
