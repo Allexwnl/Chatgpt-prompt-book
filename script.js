@@ -18,6 +18,10 @@ function LogInCheck() {
         }
       })
         .done(function( response ) {
+            if(response == "Log in first" && (window.location.href != "login.html" && window.location.href != "index.html"))
+            {
+                window.location.href = "login.html";
+            }
             console.log(response);
         });
 }
@@ -48,10 +52,6 @@ function pushPrompt(prompt, category, usecase) {
         }
       })
         .done(function( response ) {
-            if(response == "Log in first")
-            {
-                window.location.href = "login.html";
-            }
             console.log(response);
         });
 }

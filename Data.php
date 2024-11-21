@@ -3,11 +3,6 @@
 include("connect.php");
 session_start();
 
-if($_SESSION['userid'] == null) {
-    echo "Log in first";
-    exit;
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch($_POST['function']) {
         case 'logInCheck':
@@ -30,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 function logInCheck() {
     if ($_SESSION['userid'] == null) {
-        header("Location: login_register.php");
+        echo "Log in first";
         exit;
     }
 }
