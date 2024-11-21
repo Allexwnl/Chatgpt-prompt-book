@@ -188,7 +188,7 @@ if(saveButton !== null)
 }
 
 if(window.location.href.includes("docs.html")) {
-    const output = getPrompts();
+    const output = JSON.parse(getPrompts().responseText);
     console.log(output);
 }
 
