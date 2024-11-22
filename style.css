@@ -124,7 +124,7 @@ body {
 
 #sidebar {
     position: fixed;
-    background: linear-gradient(to bottom, #000000, #381800); /* Gradient colors */
+    background: linear-gradient(to bottom, #000000, #31532d); /* Gradient colors */
     color: white;
     height: 100%;
     width: 15%;
