@@ -73,7 +73,6 @@ function checkIfUser(username, password) {
                 window.location.href = "homepage.html";
             }
             console.log(response);
-            return response;
         });
 }
 
@@ -114,8 +113,7 @@ if(loginButton !== null)
     loginButton.addEventListener('click', () => {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        const output = checkIfUser(username, password);
-        console.log(output);
+        checkIfUser(username, password);
     });
 }
 
